@@ -1,0 +1,15 @@
+# TODO(tpudlik): describe this package.
+load("@rules_python//python:proto.bzl", "py_proto_library")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+package(default_visibility = ["//visibility:public"])
+
+proto_library(
+    name = "transfer_proto",
+    srcs = ["transfer.proto"],
+)
+
+py_proto_library(
+    name = "transfer_py_pb2",
+    deps = [":transfer_proto"],
+)

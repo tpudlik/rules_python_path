@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package pw.transfer;
+
+message Chunk {
+  uint32 transfer_id = 1;
+}

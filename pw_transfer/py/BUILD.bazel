@@ -1,0 +1,23 @@
+load("@rules_python//python:py_library.bzl", "py_library")
+load("@rules_python//python:py_test.bzl", "py_test")
+
+package(default_visibility = ["//visibility:public"])
+
+py_library(
+    name = "foo",
+    srcs = ["pw_transfer/foo.py"],
+    imports = ["."],
+    # Commenting-out the dep below will get the test to pass because it will
+    # reorder the contents of the PYTHONPATH (even though this is a dep of
+    # foo_test, too!)
+    deps = ["//pw_transfer:transfer_py_pb2"],
+)
+
+py_test(
+    name = "foo_test",
+    srcs = ["tests/foo_test.py"],
+    deps = [
+        ":foo",
+        "//pw_transfer:transfer_py_pb2",
+    ],
+)
